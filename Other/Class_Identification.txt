@@ -1,0 +1,5 @@
+50000262: Smartwatch,
+50001708: Grain_grinder,
+50001726_2: Mixer,
+50001861: Blender,
+50001986: Hair_Dryer
