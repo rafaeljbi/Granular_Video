@@ -1,0 +1,11 @@
+Video,Model,F1-Score,Precision,Recall,TP,FP,FN,TN
+Smartwatch,Especialista,0.7006,0.5487,0.9688,62,51,2,5
+Smartwatch,Geral,0.6424,0.5248,0.8281,53,48,11,8
+Blender,Especialista,0.2407,0.8667,0.1398,13,2,80,25
+Blender,Geral,0.4444,0.7143,0.3226,30,12,63,15
+Hair Dryer,Especialista,0.8358,0.9545,0.7434,84,4,29,3
+Hair Dryer,Geral,0.8083,0.9750,0.6903,78,2,35,5
+Mixer,Especialista,0.8515,0.8515,0.8515,86,15,15,4
+Mixer,Geral,0.5912,0.8103,0.4653,47,11,54,8
+Grain Grinder,Especialista,0.7558,0.7065,0.8125,65,27,15,13
+Grain Grinder,Geral,0.6194,0.6400,0.6000,48,27,32,13
