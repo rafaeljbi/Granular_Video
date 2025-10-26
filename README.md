@@ -78,6 +78,7 @@ O modelo 'Especialista' (F1=0.588) superou o 'Geral' (F1=0.538). Isso se deveu p
 Os gráficos de linha do tempo mostram *quando* cada modelo acertou, errou ou se confundiu com outra classe. As cores representam a classe detectada em cada frame.
 
 **Smartwatch: Linha do Tempo Categórica**
+
 <img width="1990" height="490" alt="image" src="https://github.com/user-attachments/assets/b1a0ff35-cb06-4da2-879b-20fe94f86ec7" />
 
 **Interpretação:** O gráfico acima ilustra visualmente os Falsos Positivos. Perceba que em vários momentos (ex: entre 9.2s e 9.4s), o Ground Truth é `None` (branco), mas o modelo 'Especialista' detecta `Grain_grinder` (laranja) e `Mixer` (verde). Isso expõe a "confusão" do modelo de classificação, algo que as métricas binárias não mostram.
@@ -88,9 +89,11 @@ Os gráficos de linha do tempo mostram *quando* cada modelo acertou, errou ou se
 As matrizes de confusão (calculadas para a classe-alvo de cada vídeo) ajudam a visualizar a contagem de Verdadeiros Positivos (TP), Falsos Positivos (FP) e Falsos Negativos (FN) em nível de frame.
 
 **Smartwatch: Matriz de Confusão (Modelo Especialista vs. Classe-Alvo)**
+
 <img width="395" height="295" alt="image" src="https://github.com/user-attachments/assets/8c2345c7-45de-401b-8c47-164b06844f6e" />
 
 **Smartwatch: Matriz de Confusão (Modelo Geral vs. Classe-Alvo)**
+
 <img width="395" height="295" alt="image" src="https://github.com/user-attachments/assets/442e910e-1c9f-4d00-9dee-cff724ab2ef7" />
 
 
