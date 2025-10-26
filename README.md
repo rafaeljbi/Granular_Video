@@ -63,48 +63,40 @@ A análise comparou o desempenho dos dois modelos em relação ao ground truth. 
 
 A tabela abaixo resume o F1-Score médio de cada modelo em todas as classes:
 
-
+**Smartwatch:**
 
 | Model | F1-Score | Precision | Recall |
 | :--- | ---: | ---: | ---: |
 | Especialista | 0.588 | 0.443 | 0.871 |
 | Geral | 0.538 | 0.431 | 0.717 |
 
-<img width="395" height="295" alt="image" src="https://github.com/user-attachments/assets/8c2345c7-45de-401b-8c47-164b06844f6e" />
-
-
-**Interpretação (Exemplo da Classe Smartwatch):**
+**Interpretação:**
 O modelo 'Especialista' (F1=0.588) superou o 'Geral' (F1=0.538). Isso se deveu principalmente ao seu **Recall** (87,1%) muito superior, indicando que ele foi muito mais eficaz em *encontrar* o objeto. No entanto, ambos os modelos sofreram com baixa **Precisão** (~44%), gerando um número significativo de Falsos Positivos.
 
-### Análise Qualitativa (Linhas do Tempo Categóricas)
+### Análise Qualitativa
 
 Os gráficos de linha do tempo mostram *quando* cada modelo acertou, errou ou se confundiu com outra classe. As cores representam a classe detectada em cada frame.
 
 **Smartwatch: Linha do Tempo Categórica**
-`[INSIRA AQUI O GRÁFICO: Timeline_Multiclass_Smartwatch.png]`
+<img width="1990" height="490" alt="image" src="https://github.com/user-attachments/assets/b1a0ff35-cb06-4da2-879b-20fe94f86ec7" />
 
-**Interpretação:** O gráfico acima ilustra visualmente os Falsos Positivos. Note que em vários momentos (ex: entre 9.2s e 9.4s), o Ground Truth é `None` (cinza), mas o modelo 'Especialista' detecta `Grain_grinder` (laranja) e `Blender` (roxo). Isso expõe a "confusão" do modelo de classificação, algo que as métricas binárias não mostram.
+**Interpretação:** O gráfico acima ilustra visualmente os Falsos Positivos. Perceba que em vários momentos (ex: entre 9.2s e 9.4s), o Ground Truth é `None` (branco), mas o modelo 'Especialista' detecta `Grain_grinder` (laranja) e `Mixer` (verde). Isso expõe a "confusão" do modelo de classificação, algo que as métricas binárias não mostram.
 
-*(...repita para os outros gráficos...)
-`[INSIRA AQUI O GRÁFICO: Timeline_Multiclass_Blender.png]`
-`[INSIRA AQUI O GRÁFICO: Timeline_Multiclass_Hair_Dryer.png]`
-`[...etc...]`
 
 ### Matrizes de Confusão
 
 As matrizes de confusão (calculadas para a classe-alvo de cada vídeo) ajudam a visualizar a contagem de Verdadeiros Positivos (TP), Falsos Positivos (FP) e Falsos Negativos (FN) em nível de frame.
 
 **Smartwatch: Matriz de Confusão (Modelo Especialista vs. Classe-Alvo)**
-`[INSIRA AQUI O GRÁFICO: Matriz_Confusao_Especialista_Smartwatch.png]`
+<img width="395" height="295" alt="image" src="https://github.com/user-attachments/assets/8c2345c7-45de-401b-8c47-164b06844f6e" />
 
 **Smartwatch: Matriz de Confusão (Modelo Geral vs. Classe-Alvo)**
-`[INSIRA AQUI O GRÁFICO: Matriz_Confusao_Geral_Smartwatch.png]`
+<img width="395" height="295" alt="image" src="https://github.com/user-attachments/assets/442e910e-1c9f-4d00-9dee-cff724ab2ef7" />
 
-*(...repita para as outras matrizes...)
 
-## 🚀 Como Replicar o Experimento
+## Como Replicar o Experimento
 
-Este repositório está estruturado para permitir a replicação completa da análise.
+Este repositório está estruturado para permitir a replicação completa da análise. Para isso serão necessáriuos alguns ajustes e configurações nos caminhos dos arquivos.
 
 ### 1. Configuração do Ambiente
 
