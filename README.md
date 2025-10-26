@@ -140,7 +140,7 @@ As matrizes de confusão (calculadas para a classe-alvo de cada vídeo) ajudam a
 
 | Model | F1-Score | Precision | Recall |
 | :--- | ---: | ---: | ---: |
-| Especialista 0.765 | 0.937 | 0.647|
+| Especialista | 0.765 | 0.937 | 0.647|
 | Geral | 0.787 | 0.976 | 0.659 |
 
 **Interpretação:**
@@ -164,16 +164,97 @@ As matrizes de confusão (calculadas para a classe-alvo de cada vídeo) ajudam a
 
 **Hair Dryer: Matriz de Confusão (Modelo Especialista vs. Classe-Alvo)**
 
-<img width="790" height="590" alt="image" src="https://github.com/user-attachments/assets/34193fd1-4a52-4a0c-b99c-de7495cf65f8" />
+<img width="395" height="295" alt="image" src="https://github.com/user-attachments/assets/34193fd1-4a52-4a0c-b99c-de7495cf65f8" />
 
 
 **Hair Dryer: Matriz de Confusão (Modelo Geral vs. Classe-Alvo)**
 
-<img width="790" height="590" alt="image" src="https://github.com/user-attachments/assets/49aaafc6-f5b9-41a7-b41e-d5b46a111a91" />
+<img width="395" height="295" alt="image" src="https://github.com/user-attachments/assets/49aaafc6-f5b9-41a7-b41e-d5b46a111a91" />
 
 As matrizes de confusão validam perfeitamente a análise quantitativa. A alta precisão de ambos os modelos é confirmada visualmente pelos valores baixíssimos no quadrante 'Falso Positivo (FP)' (apenas 91 frames para o 'Especialista' e 34 frames para o 'Geral') em relação ao total de frames analisados (~3600).
 
 O Recall moderado também é evidente nos valores significativos do quadrante 'Falso Negativo (FN)' (740 e 715 frames, respectivamente). Isso mostra que, embora os modelos raramente tenham errado (FP), eles frequentemente falharam em ver (FN) o objeto que estava presente. O modelo 'Geral' se destaca por ter o menor número de Falsos Positivos (34), o que explica sua Precisão quase perfeita de 97,6%.
+
+--------------------------------------------------------------------------
+
+**4. Mixer:**
+
+| Model | F1-Score | Precision | Recall |
+| :--- | ---: | ---: | ---: |
+| Especialista | 0.768 | 0.770 | 0.767|
+| Geral | 0.433 | 0.724 | 0.309 |
+
+**Interpretação:**
+Para a classe 'Mixer', o modelo 'Especialista' (F1=0.768) foi o vencedor indiscutível, superando amplamente o modelo 'Geral' (F1=0.433). A diferença de performance é explicada quase inteiramente pelo Recall (Sensibilidade).
+
+O 'Especialista' foi capaz de encontrar o 'Mixer' em 76,7% dos frames em que ele estava presente. Em contrapartida, o 'Geral' sofreu um colapso de sensibilidade, com um Recall de apenas 30,9%, falhando em detectar o objeto na maior parte do vídeo. A Precisão de ambos foi boa (77% e 72%), indicando que, quando faziam uma detecção, ela era majoritariamente correta.
+
+### Análise Qualitativa
+
+Os gráficos de linha do tempo mostram quando cada modelo acertou, errou ou se confundiu com outra classe. As cores representam a classe detectada em cada frame.
+
+**Mixer: Linha do Tempo Categórica**
+
+<img width="1990" height="490" alt="image" src="https://github.com/user-attachments/assets/0a762764-1d57-42c5-9f1a-850f66e90267" />
+
+
+
+**Interpretação:** O gráfico acima ilustra perfeitamente a disparidade de Recall. A linha do Ground_Truth (topo, verde) está ativa durante quase todo o vídeo. A linha do 'Especialista' (meio) espelha de perto o Ground Truth, mostrando longos blocos de detecção correta (verde), validando seu alto Recall de 76,7%. Em contraste, a linha do 'Geral' (base) é composta por pequenos fragmentos, com vastos "buracos" brancos (Falsos Negativos) que correspondem ao seu péssimo Recall de 30,9%. O gráfico também expõe a confusão do 'Especialista', que, apesar de bom, ocasionalmente detecta Smartwatch (azul) ou Hair Dryer (vermelho) no lugar do mixer.
+
+### Matrizes de Confusão
+
+As matrizes de confusão (calculadas para a classe-alvo de cada vídeo) ajudam a visualizar a contagem de Verdadeiros Positivos (TP), Falsos Positivos (FP) e Falsos Negativos (FN) em nível de frame.
+
+**Mixer: Matriz de Confusão (Modelo Especialista vs. Classe-Alvo)**
+
+<img width="395" height="295" alt="image" src="https://github.com/user-attachments/assets/501b3161-daac-4671-a4db-bb8a9ca1b93f" />
+
+**Mixer: Matriz de Confusão (Modelo Geral vs. Classe-Alvo)**
+
+<img width="395" height="295" alt="image" src="https://github.com/user-attachments/assets/f208f17b-0c02-4d7e-9b41-59f9fe3121ec" />
+
+As matrizes de confusão confirmam a análise quantitativa. A matriz do modelo 'Geral' mostra um desequilíbrio extremo, com o número de Falsos Negativos (FN) (1253 frames) sendo mais que o dobro dos Verdadeiros Positivos (TP) (561 frames), o que valida o seu baixíssimo Recall. Em contrapartida, a matriz do 'Especialista' é muito mais equilibrada, com um alto número de TP (1391) em relação aos FN (423). O quadrante Falso Positivo (FP) do 'Especialista' (416 frames) é o que limita sua Precisão a 77%.
+
+--------------------------------------------------------------------------
+
+**5. Grain Grinder (Moedor de Grãos):**
+
+| Model | F1-Score | Precision | Recall |
+| :--- | ---: | ---: | ---: |
+| Especialista | 0.628 | 0.672 | 0.590|
+| Geral | 0.443 | 0.593 | 0.353 |
+
+**Interpretação:**
+Para a classe 'Grain Grinder', o modelo 'Especialista' (F1=0.628) obteve um desempenho significativamente superior ao do 'Geral' (F1=0.443). Assim como na classe 'Mixer', a principal causa da disparidade foi o Recall (Sensibilidade).
+
+O 'Especialista' conseguiu encontrar o 'Grain Grinder' em 59,0% dos frames em que ele estava visível, enquanto o 'Geral' teve uma performance muito fraca, com um Recall de apenas 35,3%. Ambos os modelos tiveram uma Precisão (Precision) moderada (67,2% e 59,3%), indicando que ambos geraram um número considerável de Falsos Positivos.
+
+### Análise Qualitativa
+
+Os gráficos de linha do tempo mostram quando cada modelo acertou, errou ou se confundiu com outra classe. As cores representam a classe detectada em cada frame.
+
+**Grain Grinder: Linha do Tempo Categórica**
+
+<img width="1990" height="490" alt="image" src="https://github.com/user-attachments/assets/6249e299-92f4-4b3d-8948-8a3a2bec8da4" />
+
+
+**Interpretação:** O gráfico acima expõe a "confusão" de ambos os modelos. A linha do Ground_Truth (topo, laranja) mostra que o objeto está presente em grandes blocos. A linha do 'Especialista' (meio) é extremamente ruidosa; embora capture corretamente o 'Grain Grinder' (laranja) em vários momentos (explicando seu Recall de 59%), ela está contaminada por detecções incorretas de Smartwatch (azul) e Mixer (verde), o que justifica sua Precisão de apenas 67%. A linha do 'Geral' (base) é muito mais esparsa, com longos "buracos" brancos (Falsos Negativos) que validam seu baixo Recall de 35%.
+
+### Matrizes de Confusão
+
+As matrizes confirmam a análise. A matriz do 'Geral' (segunda imagem) mostra que o número de Falsos Negativos (FN) (986 frames) é quase o dobro do de Verdadeiros Positivos (TP) (538 frames), explicando o colapso do Recall. A matriz do 'Especialista' (primeira imagem) é mais equilibrada, com contagens significativas em todos os quadrantes, destacando-se TP (899), FN (625) e FP (439), o que resulta em suas métricas F1/Precision/Recall moderadas.
+
+**Grain Grinder: Matriz de Confusão (Modelo Especialista vs. Classe-Alvo)**
+
+<img width="395" height="295" alt="image" src="https://github.com/user-attachments/assets/deb2b186-770f-47f8-9ea1-806880844743" />
+
+
+**Grain Grinder: Matriz de Confusão (Modelo Geral vs. Classe-Alvo)**
+
+<img width="395" height="295" alt="image" src="https://github.com/user-attachments/assets/33d1820d-da2c-4a61-be9f-6aef526de9e2" />
+
+
+As matrizes de confusão confirmam a análise quantitativa. A matriz do modelo 'Geral' mostra um desequilíbrio extremo, com o número de Falsos Negativos (FN) (1253 frames) sendo mais que o dobro dos Verdadeiros Positivos (TP) (561 frames), o que valida o seu baixíssimo Recall. Em contrapartida, a matriz do 'Especialista' é muito mais equilibrada, com um alto número de TP (1391) em relação aos FN (423). O quadrante Falso Positivo (FP) do 'Especialista' (416 frames) é o que limita sua Precisão a 77%.
 
 ## Como Replicar o Experimento
 
