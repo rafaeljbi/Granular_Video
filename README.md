@@ -34,31 +34,44 @@ Dois modelos foram treinados para servirem como nossos "concorrentes":
 
 Para testar os modelos em um cenário realista, foram utilizados vídeos de reviews de produtos do YouTube. Para cada uma das 5 classes-alvo, um vídeo foi selecionado e seus primeiros 2 minutos foram analisados:
 
-* **Smartwatch:** `https://dovideo.io/`
-* **Blender:** `https://dovideo.io/`
-* *(...e assim por diante)*
+* **[Smartwatch](https://www.youtube.com/watch?v=2w4EkcEH8jU&t=330s)** 
+
+* **[Hair Dryer](https://www.youtube.com/watch?v=P3rPEoy82Uk)** 
+ 
+* **[Mixer](https://www.youtube.com/watch?v=z7mW82k8Vp4)** 
+   
+* **[Blender](https://www.youtube.com/watch?v=M8B00ELaMtg)** 
+     
+* **[Grain Grinder](https://www.youtube.com/watch?v=ZeBEq7a2mgI)** 
+
+Os primeiros minutos foram coletados com o script [Download_videos_120sec.py](https://github.com/rafaeljbi/Granular_Video/blob/main/Comparison/Download_videos_120sec.py) e estão armazenados em [Videos_comparison](https://github.com/rafaeljbi/Granular_Video/tree/main/Comparison/Videos_comparison).
 
 ### 3. A Avaliação
 
 A performance não foi medida apenas pela acurácia, mas por uma análise granular frame-a-frame:
 
 1.  **Coleta de Dados:** Os dois modelos foram executados em todos os frames dos vídeos de teste, gerando um log (CSV) com o `Timestamp`, `Modelo` e `Classe` detectada.
-2.  **Geração do Ground Truth:** Foi criado um "gabarito" (ground truth) manual, onde cada frame foi anotado por um humano (usando o script `Ground_truth_generation_video-check.py`) para registrar a presença *real* do objeto.
-3.  **Análise:** Os logs dos modelos foram comparados contra o ground truth frame-a-frame (considerando um "frame" como um intervalo de ~0.033s). Métricas de **Precision**, **Recall** e **F1-Score** foram calculadas para determinar qual modelo foi o vencedor para cada classe.
+   Além disso, foi usado o threshold de 50% (`CONFIDENCE_THRESHOLD = 0.5`) para ambos os modelos.
+3.  **Geração do Ground Truth:** Foi criado um "gabarito" (ground truth) manual, onde cada frame foi anotado por um humano (usando o script [Ground_truth_generation_video-check.py](https://github.com/rafaeljbi/Granular_Video/blob/main/Comparison/Ground_truth_generation_video-check.py)) para registrar a presença *real* do objeto.
+4.  **Análise:** Os logs dos modelos foram comparados contra o ground truth frame-a-frame (considerando um "frame" como um intervalo de ~0.033s). Métricas de **Precision**, **Recall** e **F1-Score** foram calculadas para determinar qual modelo foi o vencedor para cada classe.
 
-## 📊 Resultados
+## Resultados
 
-A análise comparou o desempenho dos dois modelos em relação ao ground truth. Os resultados completos podem ser encontrados no arquivo `Resultados_Analise_Frame_a_Frame/Resultados_Comparativos_Finais_Frame_a_Frame.csv`.
+A análise comparou o desempenho dos dois modelos em relação ao ground truth. Os resultados completos podem ser encontrados no notebook [Comparison_Notebook.ipynb](https://github.com/rafaeljbi/Granular_Video/blob/main/Comparison/Comparison_Notebook.ipynb). Além disso, os dados gerados pelo notebbok estão compilados no diretório [Resultados_Analise_Frame_a_Frame](https://github.com/rafaeljbi/Granular_Video/tree/main/Comparison/Resultados_Analise_Frame_a_Frame).
 
 ### Análise Quantitativa (Métricas)
 
 A tabela abaixo resume o F1-Score médio de cada modelo em todas as classes:
 
+
+
 | Model | F1-Score | Precision | Recall |
 | :--- | ---: | ---: | ---: |
 | Especialista | 0.588 | 0.443 | 0.871 |
 | Geral | 0.538 | 0.431 | 0.717 |
-*(Nota: Substitua esta tabela pelo `print` final do seu notebook, que calcula a média geral)*
+
+<img width="395" height="295" alt="image" src="https://github.com/user-attachments/assets/8c2345c7-45de-401b-8c47-164b06844f6e" />
+
 
 **Interpretação (Exemplo da Classe Smartwatch):**
 O modelo 'Especialista' (F1=0.588) superou o 'Geral' (F1=0.538). Isso se deveu principalmente ao seu **Recall** (87,1%) muito superior, indicando que ele foi muito mais eficaz em *encontrar* o objeto. No entanto, ambos os modelos sofreram com baixa **Precisão** (~44%), gerando um número significativo de Falsos Positivos.
