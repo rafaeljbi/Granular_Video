@@ -290,7 +290,29 @@ A descrição das classes encontra-se no arquivo [Class_Identification.txt](http
 
 O script de **extração dos frames** e **treinamnto do modelo 'Geral' (sem os bounding boxes)** foi feito pelo Google collab no notebook [Extract_and_Train.ipynb](https://github.com/rafaeljbi/Granular_Video/blob/main/No_Annotation/Extract_and_Train.ipynb). Para usá-lo localemente será necessário configurar os diretóios de extração e salvamento do modelo. Os frames extraídos (usados posteriormente para anotação no roboflow) encontram-se no diiretório [Frames_extract](https://github.com/rafaeljbi/Granular_Video/tree/main/No_Annotation/Frames_extract).
 
-A base anotada pelo roboflow (com os bounding boxes) encontra-se em **Base_roboflow**.
-
 O Script para treino do modelo 'Especialista' é o arquivo [Training_VERD_Roboflow3.ipynb](https://github.com/rafaeljbi/Granular_Video/blob/main/With_annotation/Training_VERD_Roboflow3.ipynb).
 
+A base anotada pelo roboflow (com os bounding boxes) encontra-se em **Base_roboflow**.
+
+Resumo da base no Roboflow para o modelo especialista:
+
+Dtaset: 12986 imagens
+5 classes
+
+Pre processamentos aplicados:
+
+Auto-Orient: Applied
+Resize: Fit (black edges) in 640x640
+Auto-Adjust Contrast: Using Contrast Stretching
+
+Annotations aplicados:
+Outputs per training example: 3
+Flip: Horizontal
+90° Rotate: Clockwise, Counter-Clockwise
+Crop: 0% Minimum Zoom, 4% Maximum Zoom
+Rotation: Between -9° and +9°
+Shear: ±14° Horizontal, ±7° Vertical
+Saturation: Between -25% and +25%
+Brightness: Between -15% and +15%
+Blur: Up to 0.9px
+Noise: Up to 1.09% of pixels
