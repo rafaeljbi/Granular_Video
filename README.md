@@ -1,8 +1,10 @@
 # Granular_Video: Análise Comparativa de Modelos de Classificação e Detecção para Reconhecimento de Produtos
 
 Este repositório contém o código e a análise de parte da dissertação de mestrado [Reconhecimento Granular em Conteúdo de Vídeos Não-Controlados].
-Autor: Rafael Colen de Almeida
-Contato: rafaeljbi@gmail.com
+
+**Autor**: Rafael Colen de Almeida
+
+**Contato**: rafaeljbi@gmail.com
 
 ## Objetivo
 
