@@ -112,7 +112,7 @@ A vitória do 'Especialista' é explicada pela diferença nos Falsos Negativos (
 
 | Model | F1-Score | Precision | Recall |
 | :--- | ---: | ---: | ---: |
-| Especialista 0.120 | 0.700 | 0.065|
+| Especialista | 0.120 | 0.700 | 0.065|
 | Geral | 0.157 | 0.617 | 0.090 |
 
 **Análise:**
@@ -129,7 +129,7 @@ Os gráficos de linha do tempo mostram *quando* cada modelo acertou, errou ou se
 
 <img width="1990" height="490" alt="image" src="https://github.com/user-attachments/assets/7eeeff11-e212-4873-bf78-bbf8d01c5bbc" />
 
-**Análise:** O gráfico acima expõe de forma dramática as diferentes falhas dos modelos. A linha do Ground_Truth (topo, roxa) está ativa durante a maior parte do vídeo.
+**Análise:** O gráfico acima expõe de forma dramática as diferentes falhas dos modelos. A linha do Ground_Truth (mais acima, roxa) está ativa durante a maior parte do vídeo.
 
 A linha do 'Especialista' (meio) é um caos de detecções incorretas. Ela quase nunca acerta (roxo), validando seu péssimo Recall de 6,5%. Em vez disso, o modelo está "hiperativo", detectando erroneamente todas as outras classes (Smartwatch, Hair Dryer, Mixer, Grain Grinder) em sequência.
 
@@ -282,7 +282,12 @@ As matrizes de confusão confirmam a análise quantitativa. A matriz do modelo '
 
 ## Como Replicar o Experimento
 
-Este repositório está estruturado para permitir a replicação completa da análise. Para isso serão necessáriuos alguns ajustes e configurações nos caminhos dos arquivos.
+Este repositório está estruturado para permitir a replicação completa da análise. Para isso serão necessáriuos alguns ajustes e configurações nos caminhos dos arquivos. Você pode iniciar o experimento desde a etapa de treino dos modelos. As cinco classes da bse VERD encontram-se no repositório, no diretório [Videos](https://github.com/rafaeljbi/Granular_Video/tree/main/No_Annotation/Videos).
+
+A descrição das classes encontra-se no arquivo [Class_Identification.txt](https://github.com/rafaeljbi/Granular_Video/blob/main/Other/Class_Identification.txt).
+
+O script de **extração dos frames** e **treinamnto do modelo generalista** foi feito pelo Google collab no notebook [Extract_and_Train.ipynb](https://github.com/rafaeljbi/Granular_Video/blob/main/No_Annotation/Extract_and_Train.ipynb). Para usá-lo localemente será necessário configurar os diretóios de extração e salvamento do modelo. Os frames extraídos (usados posteriormente para anotação no roboflow) encontram-se no diiretório [Frames_extract](https://github.com/rafaeljbi/Granular_Video/tree/main/No_Annotation/Frames_extract).
+
 
 ### 1. Configuração do Ambiente
 
