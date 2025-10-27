@@ -67,11 +67,11 @@ A tabela abaixo resume o F1-Score médio de cada modelo em todas as classes:
 
 | Model | F1-Score | Precision | Recall |
 | :--- | ---: | ---: | ---: |
-| Especialista | 0.588 | 0.443 | 0.871 |
-| Geral | 0.538 | 0.431 | 0.717 |
+| Geral | 0.588 | 0.443 | 0.871 |
+| Especialista | 0.538 | 0.431 | 0.717 |
 
 **Análise:**
-O modelo 'Especialista' (F1=0.588) superou o 'Geral' (F1=0.538). Isso se deveu principalmente ao seu **Recall** (87,1%) muito superior, indicando que ele foi muito mais eficaz em *encontrar* o objeto. No entanto, ambos os modelos sofreram com baixa **Precisão** (~44%), gerando um número significativo de Falsos Positivos.
+O modelo 'Geral' (F1=0.588) superou o 'Especialista' (F1=0.538). Isso se deveu principalmente ao seu **Recall** (87,1%) muito superior, indicando que ele foi muito mais eficaz em *encontrar* o objeto. No entanto, ambos os modelos sofreram com baixa **Precisão** (~44%), gerando um número significativo de Falsos Positivos.
 
 ### Análise Qualitativa
 
@@ -79,15 +79,16 @@ Os gráficos de linha do tempo mostram *quando* cada modelo acertou, errou ou se
 
 **Smartwatch: Linha do Tempo Categórica**
 
-<img width="1990" height="490" alt="image" src="https://github.com/user-attachments/assets/b1a0ff35-cb06-4da2-879b-20fe94f86ec7" />
+<img width="1990" height="490" alt="image" src="https://github.com/user-attachments/assets/e88f368b-9c54-4004-9e65-cd10ff705546" />
+
 
 **Análise:** O gráfico acima ilustra visualmente os problemas dos modelos.
 
 A linha do Ground_Truth (topo, azul) mostra os períodos em que o smartwatch estava visível.
 
-A linha do 'Especialista' (meio) é a mais caótica. Ela captura bem os blocos azuis do Ground Truth (alto Recall), mas nos períodos em branco (onde o objeto não estava) ela se torna extremamente "ruidosa", detectando incorretamente Grain Grinder (laranja), Hair Dryer (vermelho) e Mixer (verde). Isso explica sua baixíssima Precisão.
+A linha do 'Geral' (baixo) é a mais caótica. Ela captura bem os blocos azuis do Ground Truth (alto Recall), mas nos períodos em branco (onde o objeto não estava) ela se torna extremamente "ruidosa", detectando incorretamente Grain Grinder (laranja), Hair Dryer (vermelho) e Mixer (verde). Isso explica sua baixíssima Precisão.
 
-A linha do 'Geral' (base) também é ruidosa, mas visivelmente menos que a do 'Especialista'. Ela também mostra mais "buracos" brancos (Falsos Negativos) durante os períodos em que o Ground Truth estava ativo, validando seu Recall inferior.
+A linha do 'Especialista' (meio) também é ruidosa, mas visivelmente menos que a do 'Especialista'. Ela também mostra mais "buracos" brancos (Falsos Negativos) durante os períodos em que o Ground Truth estava ativo, validando seu Recall inferior.
 
 
 ### Matrizes de Confusão
@@ -96,15 +97,15 @@ As matrizes de confusão (calculadas para a classe-alvo de cada vídeo) ajudam a
 
 **Smartwatch: Matriz de Confusão (Modelo Especialista vs. Classe-Alvo)**
 
-<img width="395" height="295" alt="image" src="https://github.com/user-attachments/assets/8c2345c7-45de-401b-8c47-164b06844f6e" />
+<img width="395" height="295" alt="image" src="https://github.com/user-attachments/assets/095b3346-106e-43bb-84e2-158cb512db24" />
 
 **Smartwatch: Matriz de Confusão (Modelo Geral vs. Classe-Alvo)**
 
-<img width="395" height="295" alt="image" src="https://github.com/user-attachments/assets/442e910e-1c9f-4d00-9dee-cff724ab2ef7" />
+<img width="395" height="295" alt="image" src="https://github.com/user-attachments/assets/82deadcf-5c4d-4fc4-9688-fcf8ce100f40" />
 
 As matrizes de confusão expõem o problema central da baixa Precisão. Em ambas as imagens, o quadrante 'Falso Positivo (FP)' (1686 e 1459) é massivo, sendo maior até que o de 'Verdadeiro Positivo (TP)' (1343 e 1105). Isso confirma que ambos os modelos erraram mais do que acertaram quando decidiram "ver" o smartwatch.
 
-A vitória do 'Especialista' é explicada pela diferença nos Falsos Negativos (FN): ele falhou em ver o objeto em apenas 199 frames, enquanto o 'Geral' falhou em 437 frames. O 'Especialista' foi mais sensível (alto Recall), mas pagou o preço com o maior número de Falsos Positivos.
+A vitória do 'General' é explicada pela diferença nos Falsos Negativos (FN): ele falhou em ver o objeto em apenas 199 frames, enquanto o 'Geral' falhou em 437 frames. O 'Especialista' foi mais sensível (alto Recall), mas pagou o preço com o maior número de Falsos Positivos.
 
 --------------------------------------------------------------------------
 
@@ -112,14 +113,14 @@ A vitória do 'Especialista' é explicada pela diferença nos Falsos Negativos (
 
 | Model | F1-Score | Precision | Recall |
 | :--- | ---: | ---: | ---: |
-| Especialista | 0.120 | 0.700 | 0.065|
-| Geral | 0.157 | 0.617 | 0.090 |
+| Geral | 0.120 | 0.700 | 0.065|
+| Especialista | 0.157 | 0.617 | 0.090 |
 
 **Análise:**
-Para a classe 'Blender', o modelo 'Geral' (F1=0.157) superou por uma pequena margem o 'Especialista' (F1=0.120). No entanto, ambos os modelos apresentaram um desempenho geral muito baixo.
-O ponto de falha catastrófico para ambos foi o Recall (Sensibilidade), com o 'Especialista' registrando apenas 6,5% e o 'Geral' 9,0%. Isso indica que ambos os modelos são efetivamente "cegos" para a classe 'Blender', falhando em detectá-la em mais de 90% dos frames em que ela estava presente (Falsos Negativos).
+Para a classe 'Blender', o modelo 'Especialista' (F1=0.157) superou por uma pequena margem o 'Geral' (F1=0.120). No entanto, ambos os modelos apresentaram um desempenho geral muito baixo.
+O ponto de falha catastrófico para ambos foi o Recall (Sensibilidade), com o 'Geral' registrando apenas 6,5% e o 'Especialista' 9,0%. Isso indica que ambos os modelos são efetivamente "cegos" para a classe 'Blender', falhando em detectá-la em mais de 90% dos frames em que ela estava presente (Falsos Negativos).
 
-Notavelmente, o modelo 'Especialista' teve uma Precisão alta (70,0%), sugerindo que nas raras ocasiões em que ele conseguiu fazer uma detecção, ele estava correto na maioria das vezes, gerando poucos Falsos Positivos.
+Notavelmente, o modelo 'Geral' teve uma Precisão alta (70,0%), sugerindo que nas raras ocasiões em que ele conseguiu fazer uma detecção, ele estava correto na maioria das vezes, gerando poucos Falsos Positivos.
 
 ### Análise Qualitativa
 
@@ -127,15 +128,16 @@ Os gráficos de linha do tempo mostram *quando* cada modelo acertou, errou ou se
 
 **Blender: Linha do Tempo Categórica**
 
-<img width="1990" height="490" alt="image" src="https://github.com/user-attachments/assets/7eeeff11-e212-4873-bf78-bbf8d01c5bbc" />
+<img width="1990" height="490" alt="image" src="https://github.com/user-attachments/assets/03851adb-266e-45bd-b782-ad233d5ab9e8" />
+
 
 **Análise:** O gráfico acima expõe de forma dramática as diferentes falhas dos modelos. A linha do Ground_Truth (mais acima, roxa) está ativa durante a maior parte do vídeo.
 
-A linha do 'Especialista' (meio) é um caos de detecções incorretas. Ela quase nunca acerta (roxo), validando seu péssimo Recall de 6,5%. Em vez disso, o modelo está "hiperativo", detectando erroneamente todas as outras classes (Smartwatch, Hair Dryer, Mixer, Grain Grinder) em sequência.
+A linha do 'Geral' (baixo) é um caos de detecções incorretas. Ela quase nunca acerta (roxo), validando seu péssimo Recall de 6,5%. Em vez disso, o modelo está "hiperativo", detectando erroneamente todas as outras classes (Smartwatch, Hair Dryer, Mixer, Grain Grinder) em sequência.
 
-A linha do 'Geral' (base) é o oposto: ela é extremamente esparsa. Ela consiste em "buracos" brancos (Falsos Negativos) com raras detecções corretas (roxo), o que explica seu Recall de 9,0%.
+A linha do 'Especilaista' (meio) é o oposto: ela é extremamente esparsa. Ela consiste em "buracos" brancos (Falsos Negativos) com raras detecções corretas (roxo), o que explica seu Recall de 9,0%.
 
-Em suma: o 'Especialista' não é "cego", ele é "confuso", vendo objetos onde não há. O 'Geral' é simplesmente "cego", não vendo quase nada.
+Em suma: o 'Geral' não é "cego", ele é "confuso", vendo objetos onde não há. O 'Especialista' é simplesmente "cego", não vendo quase nada.
 
 
 ### Matrizes de Confusão
@@ -144,15 +146,15 @@ As matrizes de confusão (calculadas para a classe-alvo de cada vídeo) ajudam a
 
 **Smartwatch: Matriz de Confusão (Modelo Especialista vs. Classe-Alvo)**
 
-<img width="395" height="295" alt="image" src="https://github.com/user-attachments/assets/e013de15-2183-456a-b96f-c6a55173c5bb" />
+<img width="395" height="295" alt="image" src="https://github.com/user-attachments/assets/96af056b-baaa-4ddb-9c83-cc4e06f5ccdc" />
 
 **Blender: Matriz de Confusão (Modelo Geral vs. Classe-Alvo)**
 
-<img width="395" height="295" alt="image" src="https://github.com/user-attachments/assets/d9a18a49-cc49-4bfa-9ec1-b08cd59b157e" />
+<img width="395" height="295" alt="image" src="https://github.com/user-attachments/assets/c300953a-4e10-4a59-aa73-3857947f48d2" />
 
-As matrizes de confusão validam visualmente o colapso do Recall. Em ambas as imagens, o quadrante 'Falso Negativo (FN)' (2127 e 2071 frames) é massivo, dominando completamente o quadrante 'Verdadeiro Positivo (TP)' (149 e 205 frames). Isso mostra que para cada detecção correta, os modelos falharam em ver o objeto mais de 10 vezes.
+As matrizes de confusão validam visualmente o colapso do Recall. Em ambas as imagens, o quadrante 'Falso Negativo (FN)' (2127 e 2071 frames) é expressivo, dominando completamente o quadrante 'Verdadeiro Positivo (TP)' (149 e 205 frames). Isso mostra que para cada detecção correta, os modelos falharam em ver o objeto mais de 10 vezes.
 
-A alta Precisão é explicada pelos valores baixos de 'Falso Positivo (FP)' (64 e 127) em relação aos TPs. É um exemplo clássico de "paradoxo da precisão": o modelo quase nunca detecta o 'Blender', mas nas poucas vezes que o faz (TP+FP), ele tem uma chance razoável de estar certo (TP).
+A alta Precisão é explicada pelos valores baixos de 'Falso Positivo (FP)' (64 e 127) em relação aos TPs. É um exemplo clássico de "paradoxo da precisão": o modelo quase nunca detecta o 'Blender', mas nas poucas vezes que detecta (TP+FP), ele tem uma chance razoável de estar certo (TP).
 
 --------------------------------------------------------------------------
 
@@ -160,11 +162,11 @@ A alta Precisão é explicada pelos valores baixos de 'Falso Positivo (FP)' (64 
 
 | Model | F1-Score | Precision | Recall |
 | :--- | ---: | ---: | ---: |
-| Especialista | 0.765 | 0.937 | 0.647|
-| Geral | 0.787 | 0.976 | 0.659 |
+| Geral | 0.765 | 0.937 | 0.647|
+| Especialista | 0.787 | 0.976 | 0.659 |
 
 **Análise:**
-Para a classe 'Hair Dryer', ambos os modelos apresentaram um desempenho forte e muito similar, com o 'Geral' (F1=0.787) superando por uma margem muito pequena o 'Especialista' (F1=0.765).
+Para a classe 'Hair Dryer', ambos os modelos apresentaram um desempenho forte e muito similar, com o 'Especialista' (F1=0.787) superando por uma margem muito pequena o 'Geral' (F1=0.765).
 
 A característica marcante desta classe foi a Precisão (Precision) extraordinariamente alta para ambos os modelos (93,7% e 97,6%). Isso indica que, quando um dos modelos afirmava ter visto o secador de cabelo, ele estava quase sempre correto, gerando pouquíssimos Falsos Positivos.
 
@@ -174,30 +176,31 @@ Os gráficos de linha do tempo mostram *quando* cada modelo acertou, errou ou se
 
 **Hair Dryer: Linha do Tempo Categórica**
 
-<img width="1990" height="490" alt="image" src="https://github.com/user-attachments/assets/a9e2269f-b6cf-441f-a925-6589fe4a707a" />
+<img width="1990" height="490" alt="image" src="https://github.com/user-attachments/assets/5be3dcb5-cf10-4b79-b41d-e9c205f0db8a" />
+
 
 **Análise:** O gráfico acima ilustra as personalidades dos dois modelos. A linha do Ground_Truth (topo, vermelha) está ativa na maior parte do tempo.
 
-A linha do 'Geral' (base) é muito "limpa": ela consiste quase exclusivamente de detecções corretas (vermelho), o que valida sua precisão de 97,6%. No entanto, ela possui vários "buracos" brancos (Falsos Negativos) que correspondem aos períodos em que o Ground Truth estava ativo, explicando seu Recall de 65,9%.
+A linha do 'Especialista' (meio) é muito "limpa": ela consiste quase exclusivamente de detecções corretas (vermelho), o que valida sua precisão de 97,6%. No entanto, ela possui vários "buracos" brancos (Falsos Negativos) que correspondem aos períodos em que o Ground Truth estava ativo, explicando seu Recall de 65,9%.
 
-A linha do 'Especialista' (meio) é visivelmente mais "ruidosa", especialmente nos primeiros 40 segundos. Ela mostra várias detecções incorretas de Mixer (verde) e Smartwatch (azul), que são Falsos Positivos e explicam sua precisão ligeiramente menor (93,7%).
+A linha do 'Geral' (baixo) é visivelmente mais "ruidosa", especialmente nos primeiros 40 segundos. Ela mostra várias detecções incorretas de Mixer (verde) e Smartwatch (azul), que são Falsos Positivos e explicam sua precisão ligeiramente menor (93,7%).
 
 ### Matrizes de Confusão
 
-As matrizes de confusão (calculadas para a classe-alvo de cada vídeo) ajudam a visualizar a contagem de Verdadeiros Positivos (TP), Falsos Positivos (FP) e Falsos Negativos (FN) em nível de frame.
-
 **Hair Dryer: Matriz de Confusão (Modelo Especialista vs. Classe-Alvo)**
 
-<img width="395" height="295" alt="image" src="https://github.com/user-attachments/assets/34193fd1-4a52-4a0c-b99c-de7495cf65f8" />
+<img width="395" height="295" alt="image" src="https://github.com/user-attachments/assets/2cb3088a-1640-42d6-be95-9b4e823c855d" />
+
 
 
 **Hair Dryer: Matriz de Confusão (Modelo Geral vs. Classe-Alvo)**
 
-<img width="395" height="295" alt="image" src="https://github.com/user-attachments/assets/49aaafc6-f5b9-41a7-b41e-d5b46a111a91" />
+<img width="395" height="295" alt="image" src="https://github.com/user-attachments/assets/3f048582-8ca3-4fe2-8a48-7a6803b61ed7" />
 
-As matrizes de confusão validam perfeitamente a análise quantitativa. A alta precisão de ambos os modelos é confirmada visualmente pelos valores baixíssimos no quadrante 'Falso Positivo (FP)' (apenas 91 frames para o 'Especialista' e 34 frames para o 'Geral') em relação ao total de frames analisados (~3600).
 
-O Recall moderado também é evidente nos valores significativos do quadrante 'Falso Negativo (FN)' (740 e 715 frames, respectivamente). Isso mostra que, embora os modelos raramente tenham errado (FP), eles frequentemente falharam em ver (FN) o objeto que estava presente. O modelo 'Geral' se destaca por ter o menor número de Falsos Positivos (34), o que explica sua Precisão quase perfeita de 97,6%.
+As matrizes de confusão validam perfeitamente a análise quantitativa. A alta precisão de ambos os modelos é confirmada visualmente pelos valores baixíssimos no quadrante 'Falso Positivo (FP)' (apenas 91 frames para o 'Geral' e 34 frames para o 'Especialista') em relação ao total de frames analisados (~3600).
+
+O Recall moderado também é evidente nos valores significativos do quadrante 'Falso Negativo (FN)' (740 e 715 frames, respectivamente). Isso mostra que, embora os modelos raramente tenham errado (FP), eles frequentemente falharam em ver (FN) o objeto que estava presente. O modelo 'Especialista' se destaca por ter o menor número de Falsos Positivos (34), o que explica sua Precisão quase perfeita de 97,6%.
 
 --------------------------------------------------------------------------
 
