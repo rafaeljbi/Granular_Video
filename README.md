@@ -296,16 +296,16 @@ A base anotada pelo roboflow (com os bounding boxes) encontra-se em **Base_robof
 
 Resumo da base no Roboflow para o modelo especialista:
 
-Dtaset: 12986 imagens
-5 classes
-
-Pre processamentos aplicados:
+**Dtaset:** 12986 imagens
+**Classes:** 5 classes
+**Pre processamentos aplicados:** 
 
 Auto-Orient: Applied
 Resize: Fit (black edges) in 640x640
 Auto-Adjust Contrast: Using Contrast Stretching
 
-Annotations aplicados:
+**Annotations aplicados:**
+
 Outputs per training example: 3
 Flip: Horizontal
 90° Rotate: Clockwise, Counter-Clockwise
