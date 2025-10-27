@@ -1,6 +1,8 @@
 # Granular_Video: Análise Comparativa de Modelos de Classificação e Detecção para Reconhecimento de Produtos
 
 Este repositório contém o código e a análise de parte da dissertação de mestrado [Reconhecimento Granular em Conteúdo de Vídeos Não-Controlados].
+Autor: Rafael Colen de Almeida
+Contato: rafaeljbi@gmail.com
 
 ## Objetivo
 
@@ -208,39 +210,36 @@ O Recall moderado também é evidente nos valores significativos do quadrante 'F
 
 | Model | F1-Score | Precision | Recall |
 | :--- | ---: | ---: | ---: |
-| Especialista | 0.768 | 0.770 | 0.767|
-| Geral | 0.433 | 0.724 | 0.309 |
+| Geral | 0.768 | 0.770 | 0.767|
+| Especialista | 0.433 | 0.724 | 0.309 |
 
 **Análise:**
-Para a classe 'Mixer', o modelo 'Especialista' (F1=0.768) foi o vencedor indiscutível, superando amplamente o modelo 'Geral' (F1=0.433). A diferença de performance é explicada quase inteiramente pelo Recall (Sensibilidade).
+Para a classe 'Mixer', o modelo 'Geral' (F1=0.768) foi o vencedor indiscutível, superando amplamente o modelo 'Especialista' (F1=0.433). A diferença de performance é explicada quase inteiramente pelo Recall (Sensibilidade).
 
-O 'Especialista' foi capaz de encontrar o 'Mixer' em 76,7% dos frames em que ele estava presente. Em contrapartida, o 'Geral' sofreu um colapso de sensibilidade, com um Recall de apenas 30,9%, falhando em detectar o objeto na maior parte do vídeo. A Precisão de ambos foi boa (77% e 72%), indicando que, quando faziam uma detecção, ela era majoritariamente correta.
+O 'Geral' foi capaz de encontrar o 'Mixer' em 76,7% dos frames em que ele estava presente. Em contrapartida, o 'Geral' sofreu um colapso de sensibilidade, com um Recall de apenas 30,9%, falhando em detectar o objeto na maior parte do vídeo. A Precisão de ambos foi boa (77% e 72%), indicando que, quando faziam uma detecção, ela era majoritariamente correta.
 
 ### Análise Qualitativa
 
-Os gráficos de linha do tempo mostram quando cada modelo acertou, errou ou se confundiu com outra classe. As cores representam a classe detectada em cada frame.
-
 **Mixer: Linha do Tempo Categórica**
 
-<img width="1990" height="490" alt="image" src="https://github.com/user-attachments/assets/0a762764-1d57-42c5-9f1a-850f66e90267" />
+<img width="1990" height="490" alt="image" src="https://github.com/user-attachments/assets/d8dad6dc-0043-415e-9515-d4f1ed78e160" />
 
 
-
-**Análise:** O gráfico acima ilustra perfeitamente a disparidade de Recall. A linha do Ground_Truth (topo, verde) está ativa durante quase todo o vídeo. A linha do 'Especialista' (meio) espelha de perto o Ground Truth, mostrando longos blocos de detecção correta (verde), validando seu alto Recall de 76,7%. Em contraste, a linha do 'Geral' (base) é composta por pequenos fragmentos, com vastos "buracos" brancos (Falsos Negativos) que correspondem ao seu péssimo Recall de 30,9%. O gráfico também expõe a confusão do 'Especialista', que, apesar de bom, ocasionalmente detecta Smartwatch (azul) ou Hair Dryer (vermelho) no lugar do mixer.
+**Análise:** O gráfico acima ilustra perfeitamente a disparidade de Recall. A linha do Ground_Truth (topo, verde) está ativa durante quase todo o vídeo. A linha do 'Geral' (baixo) espelha de perto o Ground Truth, mostrando longos blocos de detecção correta (verde), validando seu alto Recall de 76,7%. Em contraste, a linha do 'Especialista' (meio) é composta por pequenos fragmentos, com vastos "buracos" brancos (Falsos Negativos) que correspondem ao seu péssimo Recall de 30,9%. O gráfico também expõe a confusão do 'Geral', que, apesar de bom, ocasionalmente detecta Smartwatch (azul) ou Hair Dryer (vermelho) no lugar do mixer.
 
 ### Matrizes de Confusão
 
-As matrizes de confusão (calculadas para a classe-alvo de cada vídeo) ajudam a visualizar a contagem de Verdadeiros Positivos (TP), Falsos Positivos (FP) e Falsos Negativos (FN) em nível de frame.
-
 **Mixer: Matriz de Confusão (Modelo Especialista vs. Classe-Alvo)**
 
-<img width="395" height="295" alt="image" src="https://github.com/user-attachments/assets/501b3161-daac-4671-a4db-bb8a9ca1b93f" />
+<img width="395" height="295" alt="image" src="https://github.com/user-attachments/assets/6d393fde-4c25-49e3-bc4d-9a073898bd20" />
+
 
 **Mixer: Matriz de Confusão (Modelo Geral vs. Classe-Alvo)**
 
-<img width="395" height="295" alt="image" src="https://github.com/user-attachments/assets/f208f17b-0c02-4d7e-9b41-59f9fe3121ec" />
+<img width="395" height="295" alt="image" src="https://github.com/user-attachments/assets/d53a80e1-95ed-41e3-95e0-4a127c1561a4" />
 
-As matrizes de confusão confirmam a análise quantitativa. A matriz do modelo 'Geral' mostra um desequilíbrio extremo, com o número de Falsos Negativos (FN) (1253 frames) sendo mais que o dobro dos Verdadeiros Positivos (TP) (561 frames), o que valida o seu baixíssimo Recall. Em contrapartida, a matriz do 'Especialista' é muito mais equilibrada, com um alto número de TP (1391) em relação aos FN (423). O quadrante Falso Positivo (FP) do 'Especialista' (416 frames) é o que limita sua Precisão a 77%.
+
+As matrizes de confusão confirmam a análise quantitativa. A matriz do modelo 'Especialista' mostra um desequilíbrio extremo, com o número de Falsos Negativos (FN) (1253 frames) sendo mais que o dobro dos Verdadeiros Positivos (TP) (561 frames), o que valida o seu baixíssimo Recall. Em contrapartida, a matriz do 'Geral' é muito mais equilibrada, com um alto número de TP (1391) em relação aos FN (423). O quadrante Falso Positivo (FP) do 'Geral' (416 frames) é o que limita sua Precisão a 77%.
 
 --------------------------------------------------------------------------
 
@@ -248,40 +247,38 @@ As matrizes de confusão confirmam a análise quantitativa. A matriz do modelo '
 
 | Model | F1-Score | Precision | Recall |
 | :--- | ---: | ---: | ---: |
-| Especialista | 0.628 | 0.672 | 0.590|
-| Geral | 0.443 | 0.593 | 0.353 |
+| Geral | 0.628 | 0.672 | 0.590|
+| Especialista | 0.443 | 0.593 | 0.353 |
 
 **Análise:**
-Para a classe 'Grain Grinder', o modelo 'Especialista' (F1=0.628) obteve um desempenho significativamente superior ao do 'Geral' (F1=0.443). Assim como na classe 'Mixer', a principal causa da disparidade foi o Recall (Sensibilidade).
+Para a classe 'Grain Grinder', o modelo 'geral' (F1=0.628) obteve um desempenho significativamente superior ao do 'Especialista' (F1=0.443). Assim como na classe 'Mixer', a principal causa da disparidade foi o Recall (Sensibilidade).
 
-O 'Especialista' conseguiu encontrar o 'Grain Grinder' em 59,0% dos frames em que ele estava visível, enquanto o 'Geral' teve uma performance muito fraca, com um Recall de apenas 35,3%. Ambos os modelos tiveram uma Precisão (Precision) moderada (67,2% e 59,3%), indicando que ambos geraram um número considerável de Falsos Positivos.
+O 'Geral' conseguiu encontrar o 'Grain Grinder' em 59,0% dos frames em que ele estava visível, enquanto o 'Especialista' teve uma performance muito fraca, com um Recall de apenas 35,3%. Ambos os modelos tiveram uma Precisão (Precision) moderada (67,2% e 59,3%), indicando que ambos geraram um número considerável de Falsos Positivos.
 
 ### Análise Qualitativa
 
-Os gráficos de linha do tempo mostram quando cada modelo acertou, errou ou se confundiu com outra classe. As cores representam a classe detectada em cada frame.
-
 **Grain Grinder: Linha do Tempo Categórica**
 
-<img width="1990" height="490" alt="image" src="https://github.com/user-attachments/assets/6249e299-92f4-4b3d-8948-8a3a2bec8da4" />
+<img width="1990" height="490" alt="image" src="https://github.com/user-attachments/assets/df9a74ff-1394-483d-8728-e24e8427cb67" />
 
 
-**Análise:** O gráfico acima expõe a "confusão" de ambos os modelos. A linha do Ground_Truth (topo, laranja) mostra que o objeto está presente em grandes blocos. A linha do 'Especialista' (meio) é extremamente ruidosa; embora capture corretamente o 'Grain Grinder' (laranja) em vários momentos (explicando seu Recall de 59%), ela está contaminada por detecções incorretas de Smartwatch (azul) e Mixer (verde), o que justifica sua Precisão de apenas 67%. A linha do 'Geral' (base) é muito mais esparsa, com longos "buracos" brancos (Falsos Negativos) que validam seu baixo Recall de 35%.
+
+**Análise:** O gráfico acima expõe a "confusão" de ambos os modelos. A linha do Ground_Truth (topo, laranja) mostra que o objeto está presente em grandes blocos. A linha do 'Geral' (baixo) é extremamente ruidosa; embora capture corretamente o 'Grain Grinder' (laranja) em vários momentos (explicando seu Recall de 59%), ela está contaminada por detecções incorretas de Smartwatch (azul) e Mixer (verde), o que justifica sua Precisão de apenas 67%. A linha do 'Especialista' (meio) é muito mais esparsa, com longos "buracos" brancos (Falsos Negativos) que validam seu baixo Recall de 35%.
 
 ### Matrizes de Confusão
 
-As matrizes confirmam a análise. A matriz do 'Geral' (segunda imagem) mostra que o número de Falsos Negativos (FN) (986 frames) é quase o dobro do de Verdadeiros Positivos (TP) (538 frames), explicando o colapso do Recall. A matriz do 'Especialista' (primeira imagem) é mais equilibrada, com contagens significativas em todos os quadrantes, destacando-se TP (899), FN (625) e FP (439), o que resulta em suas métricas F1/Precision/Recall moderadas.
-
 **Grain Grinder: Matriz de Confusão (Modelo Especialista vs. Classe-Alvo)**
 
-<img width="395" height="295" alt="image" src="https://github.com/user-attachments/assets/deb2b186-770f-47f8-9ea1-806880844743" />
-
+<img width="395" height="295" alt="image" src="https://github.com/user-attachments/assets/d6dadfc0-cfe2-4811-ace8-34c40cb37dc8" />
 
 **Grain Grinder: Matriz de Confusão (Modelo Geral vs. Classe-Alvo)**
 
-<img width="395" height="295" alt="image" src="https://github.com/user-attachments/assets/33d1820d-da2c-4a61-be9f-6aef526de9e2" />
+<img width="395" height="295" alt="image" src="https://github.com/user-attachments/assets/8aa969d8-0fc9-42c6-877b-e063c1e9f745" />
 
 
-As matrizes de confusão confirmam a análise quantitativa. A matriz do modelo 'Geral' mostra um desequilíbrio extremo, com o número de Falsos Negativos (FN) (1253 frames) sendo mais que o dobro dos Verdadeiros Positivos (TP) (561 frames), o que valida o seu baixíssimo Recall. Em contrapartida, a matriz do 'Especialista' é muito mais equilibrada, com um alto número de TP (1391) em relação aos FN (423). O quadrante Falso Positivo (FP) do 'Especialista' (416 frames) é o que limita sua Precisão a 77%.
+As matrizes confirmam a análise. A matriz do 'Especialista' (Detecção, primeira imagem) mostra que o número de Falsos Negativos (FN) (986 frames) é quase o dobro do de Verdadeiros Positivos (TP) (538 frames), explicando o colapso do Recall.
+
+Em contraste, a matriz do 'Geral' (Classificação, segunda imagem) é muito mais equilibrada, com TP (899 frames) superando os FN (625 frames), o que valida seu Recall superior. O alto número de Falsos Positivos (FP) (439 frames) nesta matriz é a causa da sua Precisão moderada e do "ruído" visual visto no gráfico de linha do tempo.
 
 ## Como Replicar o Experimento
 
@@ -289,50 +286,9 @@ Este repositório está estruturado para permitir a replicação completa da an�
 
 A descrição das classes encontra-se no arquivo [Class_Identification.txt](https://github.com/rafaeljbi/Granular_Video/blob/main/Other/Class_Identification.txt).
 
-O script de **extração dos frames** e **treinamnto do modelo generalista** foi feito pelo Google collab no notebook [Extract_and_Train.ipynb](https://github.com/rafaeljbi/Granular_Video/blob/main/No_Annotation/Extract_and_Train.ipynb). Para usá-lo localemente será necessário configurar os diretóios de extração e salvamento do modelo. Os frames extraídos (usados posteriormente para anotação no roboflow) encontram-se no diiretório [Frames_extract](https://github.com/rafaeljbi/Granular_Video/tree/main/No_Annotation/Frames_extract).
+O script de **extração dos frames** e **treinamnto do modelo 'Geral' (sem os bounding boxes)** foi feito pelo Google collab no notebook [Extract_and_Train.ipynb](https://github.com/rafaeljbi/Granular_Video/blob/main/No_Annotation/Extract_and_Train.ipynb). Para usá-lo localemente será necessário configurar os diretóios de extração e salvamento do modelo. Os frames extraídos (usados posteriormente para anotação no roboflow) encontram-se no diiretório [Frames_extract](https://github.com/rafaeljbi/Granular_Video/tree/main/No_Annotation/Frames_extract).
 
+A base anotada pelo roboflow (com os bounding boxes) encontra-se em **Base_roboflow**.
 
-### 1. Configuração do Ambiente
+O Script para treino do modelo 'Especialista' é o arquivo [Training_VERD_Roboflow3.ipynb](https://github.com/rafaeljbi/Granular_Video/blob/main/With_annotation/Training_VERD_Roboflow3.ipynb).
 
-1.  Clone o repositório:
-    ```bash
-    git clone [https://github.com/rafaeljbi/Granular_Video.git](https://github.com/rafaeljbi/Granular_Video.git)
-    cd Granular_Video
-    ```
-2.  (Recomendado) Crie um ambiente virtual:
-    ```bash
-    python -m venv venv
-    .\venv\Scripts\activate
-    ```
-3.  Instale as dependências:
-    *(Nota: Você precisará criar este arquivo `requirements.txt` primeiro, rodando `pip freeze > requirements.txt` no seu ambiente que funciona)*
-    ```bash
-    pip install -r requirements.txt
-    ```
-    As bibliotecas principais são `ultralytics`, `pandas`, `opencv-python`, `matplotlib`, `seaborn` e `yt-dlp`. Você também precisará do [FFmpeg](https://ffmpeg.org/download.html) instalado no PATH do seu sistema.
-
-### 2. Coleta de Dados dos Modelos
-
-Para gerar os logs de detecção a partir de um vídeo do YouTube:
-* Use o script `Frame_read.py`. *(Você pode renomear o script que fizemos para este nome)*
-* Configure as URLs e caminhos dos modelos dentro do script.
-* Execute: `python Frame_read.py`
-* Isso irá gerar os arquivos `log_...txt`.
-
-### 3. Geração do Ground Truth Manual
-
-Para gerar o "gabarito" manual dos vídeos:
-* Primeiro, baixe os vídeos de 2 minutos usando `Download_videos_120sec.py`.
-* Em seguida, use o script `Ground_truth_generation_video-check.py`.
-* Configure o `VIDEO_FOLDER` e o `CLASS_KEYS` no script.
-* Execute: `python Ground_truth_generation_video-check.py`
-* Uma janela do OpenCV será aberta. Pressione as teclas (`1`, `2`, `3`...) correspondentes à classe visível. Pressione `ESPAÇO` para pausar/despausar.
-* Isso irá gerar os arquivos `Ground_truth_...txt`.
-
-### 4. Análise e Geração de Gráficos
-
-Para gerar as métricas, tabelas e gráficos:
-* Execute o Jupyter Notebook `Analise_Resultados.ipynb`. *(Recomendado: Use o Google Colab para evitar conflitos de biblioteca)*.
-* Certifique-se de que todos os 10 arquivos `.txt` (5 de log, 5 de ground truth) estejam na pasta correta (ex: `Comparison_files/`).
-* Execute todas as células do notebook.
-* Os resultados (`.csv` e `.png`) serão salvos na pasta `Resultados_Analise_Frame_a_Frame/`.
